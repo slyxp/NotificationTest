@@ -51,17 +51,15 @@ public class MainActivity extends Activity {
                 // 通过Notification.Builder来创建通知，注意API Level
                 // API11之后才支持
                 Notification notify2 = new Notification.Builder(this)
-                        .setSmallIcon(R.mipmap.ic_launcher) // 设置状态栏中的小图片，尺寸一般建议在24×24，
-                                                // 这个图片同样也是在下拉状态栏中所显示，如果在那里需要更换更大的图片，可以使用setLargeIcon(Bitmap icon)
-                        .setTicker("TickerText:" + "您有新短消息，请注意查收！")// 设置在status
-                        // bar上显示的提示文字
-                        .setContentTitle("Notification Title")// 设置在下拉status
-                        // bar后Activity，本例子中的NotififyMessage的TextView中显示的标题
-                        .setContentText("This is the notification message")// TextView中显示的详细内容
+                        .setSmallIcon(R.mipmap.ic_launcher) /* 设置状态栏中的小图片，尺寸一般建议在24×24，
+                                                 这个图片同样也是在下拉状态栏中所显示，如果在那里需要更换更大的图片，可以使用setLargeIcon(Bitmap icon)*/
+                        .setTicker("TickerText:" + "您有新短消息，请注意查收！") // 设置在statusBar上显示的提示文字
+                        .setContentTitle("Notification Title") // 设置在下拉statusBar后Activity，本例子中的NotifyMessage的TextView中显示的标题
+                        .setContentText("This is the notification message") // TextView中显示的详细内容
                         .setContentIntent(pendingIntent2) // 关联PendingIntent
-                        .setNumber(1) // 在TextView的右方显示的数字，可放大图片看，在最右侧。这个number同时也起到一个序列号的左右，如果多个触发多个通知（同一ID），可以指定显示哪一个。
-                        .getNotification(); // 需要注意build()是在API level
-                // 16及之后增加的，在API11中可以使用getNotificatin()来代替
+                        .setNumber(100) /* 在TextView的右方显示的数字，可放大图片看，在最右侧。
+                                                     这个number同时也起到一个序列号的左右，如果多个触发多个通知（同一ID），可以指定显示哪一个。*/
+                        .getNotification(); // 需要注意build()是在API level 16及之后增加的，在API11中可以使用getNotification()来代替
                 notify2.flags |= Notification.FLAG_AUTO_CANCEL;
                 manager.notify(NOTIFICATION_FLAG, notify2);
                 break;
@@ -69,17 +67,16 @@ public class MainActivity extends Activity {
             case R.id.btn3:
                 PendingIntent pendingIntent3 = PendingIntent.getActivity(this, 0,
                         new Intent(this, MainActivity.class), 0);
-                // 通过Notification.Builder来创建通知，注意API Level
-                // API16之后才支持
+                // 通过Notification.Builder来创建通知，注意API Level 16之后才支持
                 Notification notify3 = new Notification.Builder(this)
                         .setSmallIcon(R.mipmap.ic_launcher)
                         .setTicker("TickerText:" + "您有新短消息，请注意查收！")
                         .setContentTitle("Notification Title")
                         .setContentText("This is the notification message")
-                        .setContentIntent(pendingIntent3).setNumber(1).build(); // 需要注意build()是在API
-                // level16及之后增加的，API11可以使用getNotificatin()来替代
+                        .setContentIntent(pendingIntent3).setNumber(1).build(); /* 需要注意build()是在API
+                                                                           level16及之后增加的，API11可以使用getNotification()来替代*/
                 notify3.flags |= Notification.FLAG_AUTO_CANCEL; // FLAG_AUTO_CANCEL表明当通知被用户点击时，通知将被清除。
-                manager.notify(NOTIFICATION_FLAG, notify3);// 步骤4：通过通知管理器来发起通知。如果id不同，则每click，在status哪里增加一个提示
+                manager.notify(NOTIFICATION_FLAG, notify3); // 步骤4：通过通知管理器来发起通知。如果id不同，则每click，在status哪里增加一个提示
                 break;
             // 自定义通知
             case R.id.btn4:
