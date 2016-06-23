@@ -26,8 +26,8 @@ public class MainActivity extends Activity {
         switch (view.getId()) {
             // 默认通知
             case R.id.btn1:
-                // 创建一个PendingIntent，和Intent类似，不同的是由于不是马上调用，需要在下拉状态条出发的activity，
-                                                // 所以采用的是PendingIntent,即点击Notification跳转启动到哪个Activity
+                /* 创建一个PendingIntent，和Intent类似，不同的是由于不是马上调用，需要在下拉状态条出发的activity，
+                                                        所以采用的是PendingIntent,即点击Notification跳转启动到哪个Activity */
                 PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
                         new Intent(this, MainActivity.class), 0);
                 // 下面需兼容Android 2.x版本是的处理方式
@@ -37,8 +37,8 @@ public class MainActivity extends Activity {
                 notify1.icon = R.mipmap.ic_launcher;
                 notify1.tickerText = "TickerText:您有新短消息，请注意查收！";
                 notify1.when = System.currentTimeMillis();
-//                notify1.setLatestEventInfo(this, "Notification Title",
-//                        "This is the notification message", pendingIntent);
+                //notify1.setLatestEventInfo(this, "Notification Title",
+                //"This is the notification message", pendingIntent);
                 notify1.number = 1;
                 notify1.flags |= Notification.FLAG_AUTO_CANCEL; // FLAG_AUTO_CANCEL表明当通知被用户点击时，通知将被清除。
                 // 通过通知管理器来发起通知。如果id不同，则每click，在statu那里增加一个提示
@@ -48,11 +48,10 @@ public class MainActivity extends Activity {
             case R.id.btn2:
                 PendingIntent pendingIntent2 = PendingIntent.getActivity(this, 0,
                         new Intent(this, MainActivity.class), 0);
-                // 通过Notification.Builder来创建通知，注意API Level
-                // API11之后才支持
+                // 通过Notification.Builder来创建通知，注意API Level 11之后才支持
                 Notification notify2 = new Notification.Builder(this)
                         .setSmallIcon(R.mipmap.ic_launcher) /* 设置状态栏中的小图片，尺寸一般建议在24×24，
-                                                 这个图片同样也是在下拉状态栏中所显示，如果在那里需要更换更大的图片，可以使用setLargeIcon(Bitmap icon)*/
+                                                 这个图片同样也是在下拉状态栏中所显示，如果在那里需要更换更大的图片，可以使用setLargeIcon(Bitmap icon) */
                         .setTicker("TickerText:" + "您有新短消息，请注意查收！") // 设置在statusBar上显示的提示文字
                         .setContentTitle("Notification Title") // 设置在下拉statusBar后Activity，本例子中的NotifyMessage的TextView中显示的标题
                         .setContentText("This is the notification message") // TextView中显示的详细内容
